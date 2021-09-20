@@ -3,7 +3,7 @@ package my.dong6662.japspringbootstarterdemo.service;
 import cn.hutool.core.lang.UUID;
 import com.fujieid.jap.core.JapUser;
 import com.fujieid.jap.core.JapUserService;
-import com.fujieid.jap.spring.boot.common.autoconfigure.JapUserServiceType;
+import com.fujieid.jap.spring.boot.common.JapUserServiceType;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

@@ -2,7 +2,7 @@ package my.dong6662.japspringbootstarterdemo.service;
 
 import com.fujieid.jap.core.JapUser;
 import com.fujieid.jap.core.JapUserService;
-import com.fujieid.jap.spring.boot.common.autoconfigure.JapUserServiceType;
+import com.fujieid.jap.spring.boot.common.JapUserServiceType;
 import me.zhyd.oauth.model.AuthUser;
 import org.assertj.core.util.Lists;
 import org.springframework.stereotype.Service;
