@@ -8,9 +8,9 @@
         <version>2.5.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>my.dong6662</groupId>
+    <groupId>xyz.dong6662</groupId>
     <artifactId>jap-spring-boot-starter-demo</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>jap-spring-boot-starter-demo</name>
     <description>Demo project for Spring Boot</description>
     <properties>
@@ -43,24 +43,24 @@
 
         <!--jap dependencies-->
         <dependency>
-            <groupId>com.fujieid.jap.spring.boot</groupId>
-            <artifactId>jap-spring-boot-starter</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>xyz.dong6662.jap.spring.boot</groupId>
+            <artifactId>jap-spring-boot-starter-template</artifactId>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>com.fujieid.jap.spring.boot</groupId>
+            <groupId>xyz.dong6662.jap.spring.boot</groupId>
             <artifactId>jap-simple-spring-boot-starter</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>com.fujieid.jap.spring.boot</groupId>
+            <groupId>xyz.dong6662.jap.spring.boot</groupId>
             <artifactId>jap-social-spring-boot-starter</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>com.fujieid.jap.spring.boot</groupId>
+            <groupId>xyz.dong6662.jap.spring.boot</groupId>
             <artifactId>jap-oauth2-spring-boot-starter</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 
