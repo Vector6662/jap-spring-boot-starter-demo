@@ -1,4 +1,4 @@
-package my.dong6662.japspringbootstarterdemo.controller;
+package xyz.dong6662.japspringbootstarterdemo.controller;
 
 import com.fujieid.jap.core.JapUser;
 import com.fujieid.jap.core.context.JapAuthentication;

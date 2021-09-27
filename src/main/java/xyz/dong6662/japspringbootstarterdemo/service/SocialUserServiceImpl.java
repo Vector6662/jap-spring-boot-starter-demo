@@ -1,4 +1,4 @@
-package my.dong6662.japspringbootstarterdemo.service;
+package xyz.dong6662.japspringbootstarterdemo.service;
 
 import com.fujieid.jap.core.JapUser;
 import com.fujieid.jap.core.JapUserService;

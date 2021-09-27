@@ -1,4 +1,4 @@
-package my.dong6662.japspringbootstarterdemo.controller;
+package xyz.dong6662.japspringbootstarterdemo.controller;
 
 import com.fujieid.jap.core.result.JapResponse;
 import com.fujieid.jap.simple.SimpleStrategy;

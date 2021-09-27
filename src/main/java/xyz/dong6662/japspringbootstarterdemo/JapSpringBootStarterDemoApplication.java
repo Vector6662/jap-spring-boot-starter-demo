@@ -1,4 +1,4 @@
-package my.dong6662.japspringbootstarterdemo;
+package xyz.dong6662.japspringbootstarterdemo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

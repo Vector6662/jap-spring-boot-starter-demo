@@ -1,4 +1,4 @@
-package my.dong6662.japspringbootstarterdemo.config;
+package xyz.dong6662.japspringbootstarterdemo.config;
 
 import com.fujieid.jap.core.cache.JapCache;
 import lombok.extern.slf4j.Slf4j;
