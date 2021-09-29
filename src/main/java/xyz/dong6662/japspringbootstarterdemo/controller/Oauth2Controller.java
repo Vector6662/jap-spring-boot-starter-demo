@@ -23,7 +23,7 @@ public class Oauth2Controller {
     /**
      * gitee AuthorizationCode授权方式
      */
-    @RequestMapping("/gitee/authorization-code")
+    @RequestMapping("/gitee/authorization-code") //callback-url
     public JapResponse authorizationCode(){
         return japTemplate.opsForOauth2().authenticateByAuthorizationCode("gitee");
     }

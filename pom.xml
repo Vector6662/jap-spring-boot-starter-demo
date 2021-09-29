@@ -59,6 +59,11 @@
             <artifactId>jap-oauth2-spring-boot-starter</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>xyz.dong6662.jap.spring.boot</groupId>
+            <artifactId>jap-oidc-spring-boot-starter</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
 </project>
