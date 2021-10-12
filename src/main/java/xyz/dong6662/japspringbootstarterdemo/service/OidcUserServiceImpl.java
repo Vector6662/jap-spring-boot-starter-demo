@@ -1,8 +1,8 @@
 package xyz.dong6662.japspringbootstarterdemo.service;
 
-import com.baomidou.kisso.security.token.AccessToken;
 import com.fujieid.jap.core.JapUser;
 import com.fujieid.jap.core.JapUserService;
+import com.fujieid.jap.oauth2.token.AccessToken;
 import com.fujieid.jap.spring.boot.common.JapUserServiceType;
 import com.xkcoding.json.JsonUtil;
 import org.assertj.core.util.Lists;

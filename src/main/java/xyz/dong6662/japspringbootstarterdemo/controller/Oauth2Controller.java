@@ -3,7 +3,9 @@ package xyz.dong6662.japspringbootstarterdemo.controller;
 import com.fujieid.jap.core.JapUser;
 import com.fujieid.jap.core.result.JapResponse;
 import com.fujieid.jap.core.store.JapUserStore;
+import com.fujieid.jap.oauth2.Oauth2Strategy;
 import com.fujieid.jap.spring.boot.starter.JapTemplate;
+import com.fujieid.spring.boot.japoauth2springbootstarter.autoconfigure.Oauth2Properties;
 import com.xkcoding.json.util.Kv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,11 @@ public class Oauth2Controller {
     JapTemplate japTemplate;
     @Autowired
     JapUserStore japUserStore;
+
+    @Autowired
+    Oauth2Strategy oauth2Strategy;
+    @Autowired
+    Oauth2Properties oauth2Properties;
 
     /**
      * gitee AuthorizationCode授权方式
@@ -58,12 +65,21 @@ public class Oauth2Controller {
 
 
     /**
-     * 微博 AuthorizationCode授权方式
+     * 阿里云 AuthorizationCode授权方式
      * @return
      */
-    // FIXME: 2021/9/25 尚未测试
-    @RequestMapping("/weibo/authorization-code")
-    public JapResponse weibo(){
-        return japTemplate.opsForOauth2().authenticateByAuthorizationCode("weibo");
+    @RequestMapping("/aliyun/authorization-code")
+    public JapResponse aliyunAuthorizationCode(HttpServletRequest request, HttpServletResponse response){
+        return oauth2Strategy.authenticate(oauth2Properties.getOauth2().get(3), request, response);
     }
+
+    @RequestMapping("/aliyun/refresh-token")
+    public JapResponse aliyunRefreshToken(HttpServletRequest request, HttpServletResponse response) {
+        // 这是获取JapUser的一种方式
+        JapUser japUser = japUserStore.get(request, response);
+        // FIXME: aliyun平台不会在授权信息中返回refresh_token，因此这里refreshToken的是为null
+        String refreshToken = ((Kv) japUser.getAdditional()).getString("refresh-token");
+        return oauth2Strategy.refreshToken(oauth2Properties.getOauth2().get(3), refreshToken);
+    }
+
 }

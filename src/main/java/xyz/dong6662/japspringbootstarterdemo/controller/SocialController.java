@@ -5,7 +5,9 @@ import com.fujieid.jap.core.context.JapAuthentication;
 import com.fujieid.jap.core.result.JapResponse;
 import com.fujieid.jap.core.store.JapUserStore;
 import com.fujieid.jap.core.util.JapUtil;
+import com.fujieid.jap.social.SocialStrategy;
 import com.fujieid.jap.spring.boot.starter.JapTemplate;
+import com.fujieid.spring.boot.japsocialspringbootstarter.autoconfigure.SocialProperties;
 import me.zhyd.oauth.model.AuthToken;
 import me.zhyd.oauth.model.AuthUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,11 @@ public class SocialController {
     @Autowired
     JapUserStore japUserStore;
 
+    @Autowired
+    SocialStrategy socialStrategy;
+    @Autowired
+    SocialProperties socialProperties;
+
     @RequestMapping(method = RequestMethod.GET, path = "/gitee")
     public JapResponse giteeCallback() {
         return japTemplate.opsForSocial().authenticate("gitee");
@@ -43,9 +50,24 @@ public class SocialController {
         // 当前会话保存的AuthUser
         AuthUser authUser = (AuthUser) japUserStore.get(request, response).getAdditional();
         AuthToken token = authUser.getToken();
-        // AuthGiteeRequest中没有实现refresh方法，故会报错。
+        // FIXME: 2021/10/10 AuthGiteeRequest中没有实现refresh方法，此处暂无法测试
         return japTemplate.opsForSocial().refreshToken("gitee",token);
     }
 
-    // 同样AuthGiteeRequest没有实现revoke，故暂不测试revokeToken
+    // FIXME: 2021/10/10 同refreshToken， AuthGiteeRequest（me.zhyd.oauth.request包下）中也没有实现revoke，故暂不测试revokeToken
+
+
+    @RequestMapping("/aliyun")
+    public JapResponse authenticate(HttpServletRequest request, HttpServletResponse response){
+        return socialStrategy.authenticate(socialProperties.getSocial().get("aliyun"),request,response);
+    }
+
+    @RequestMapping("/aliyun/userInfo")
+    public JapResponse getUserInfo(HttpServletRequest request, HttpServletResponse response) {
+        // 当前会话保存的AuthUser
+        AuthUser authUser = (AuthUser) japUserStore.get(request, response).getAdditional();
+        AuthToken token = authUser.getToken();
+        return socialStrategy.getUserInfo(socialProperties.getSocial().get("aliyun"),token);
+    }
+
 }

@@ -1,8 +1,8 @@
 package xyz.dong6662.japspringbootstarterdemo.service;
 
-import com.baomidou.kisso.security.token.AccessToken;
 import com.fujieid.jap.core.JapUser;
 import com.fujieid.jap.core.JapUserService;
+import com.fujieid.jap.oauth2.token.AccessToken;
 import com.fujieid.jap.spring.boot.common.JapUserServiceType;
 import com.xkcoding.json.JsonUtil;
 import org.assertj.core.util.Lists;
@@ -42,15 +42,17 @@ public class Oauth2UserServiceImpl implements JapUserService {
     @Override
     public JapUser createAndGetOauth2User(String platform, Map<String, Object> userInfo, Object tokenInfo) {
         // FIXME 业务端可以对 tokenInfo 进行保存或其他操作
-//        AccessToken accessToken = (AccessToken) tokenInfo;
-//        System.out.println(JsonUtil.toJsonString(accessToken));
+        AccessToken accessToken = (AccessToken) tokenInfo;
+        System.out.println(JsonUtil.toJsonString(accessToken));
         // FIXME 注意：此处仅作演示用，不同的 oauth 平台用户id都不一样，此处需要开发者自己分析第三方平台的用户信息，提取出用户的唯一ID
         String uid = (String) userInfo.get("userId");
+
         // 查询绑定关系，确定当前用户是否已经登录过业务系统
         JapUser japUser = this.getByPlatformAndUid(platform, uid);
         if (null == japUser) {
             japUser = createJapUser();
-            japUser.setAdditional(userInfo);
+            japUser.setAdditional(userInfo); //保存token
+            japUser.setToken(accessToken.getAccessToken());
             userDatas.add(japUser);
         }
         return japUser;
